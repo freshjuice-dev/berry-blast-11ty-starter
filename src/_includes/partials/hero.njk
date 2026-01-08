@@ -1,0 +1,22 @@
+{#
+  Hero Section Partial
+  Usage: {% include "partials/hero.njk" %}
+  Requires: title (from page front matter)
+  Optional: description (from page front matter)
+#}
+{% set gradientAngle = range(0, 360) | random %}
+<section
+  class="relative py-16 md:py-24 overflow-hidden min-h-[350px] flex items-center"
+  style="background: linear-gradient({{ gradientAngle }}deg, oklch(0.35 0.15 295), oklch(0.45 0.2 280), oklch(0.38 0.18 310));"
+>
+  {# Decorative elements #}
+  <div class="absolute top-0 right-0 w-96 h-96 bg-primary-600 rounded-full -translate-y-1/2 translate-x-1/2 opacity-40"></div>
+  <div class="absolute bottom-0 left-0 w-64 h-64 bg-primary-800 rounded-full translate-y-1/2 -translate-x-1/3 opacity-40"></div>
+
+  <div class="container relative text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-white text-balance max-w-3xl mx-auto">{{ title }}</h1>
+    {% if description %}
+      <p class="mt-4 text-xl text-primary-100 text-pretty max-w-2xl mx-auto">{{ description }}</p>
+    {% endif %}
+  </div>
+</section>

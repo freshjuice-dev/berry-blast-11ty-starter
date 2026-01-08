@@ -1,0 +1,22 @@
+---
+layout: layouts/base.njk
+title: "Search"
+description: "Find articles, pages, and more across our website."
+permalink: /search/
+pagefind: true
+---
+
+{# Purple Hero Section #}
+{% include "partials/hero.njk" %}
+
+<section class="section">
+  <div class="container max-w-3xl">
+    <div id="pagefind" class="pagefind-ui"></div>
+
+    <div class="mt-12 text-center">
+      <p class="text-sm text-zinc-500 hc:text-zinc-700">
+        Search powered by <a href="https://pagefind.app/" target="_blank" rel="noopener noreferrer" class="text-primary-700 hover:text-primary-800 transition-colors hc:text-primary-800">Pagefind</a>
+      </p>
+    </div>
+  </div>
+</section>

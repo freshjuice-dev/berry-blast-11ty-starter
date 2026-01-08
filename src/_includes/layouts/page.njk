@@ -1,0 +1,16 @@
+---
+layout: layouts/base.njk
+---
+{% from "_components/index.njk" import button %}
+
+{# Purple Hero Section #}
+{% include "partials/hero.njk" %}
+
+<article class="section">
+  <div class="container max-w-4xl">
+    {# Page content #}
+    <div class="prose prose-lg mx-auto">
+      {{ content | safe }}
+    </div>
+  </div>
+</article>

@@ -1,0 +1,68 @@
+---
+layout: layouts/base.njk
+title: Blog
+description: Articles, tutorials, and updates from the Berry Blast team.
+pagination:
+  data: collections.blog
+  size: 6
+  alias: posts
+permalink: "{% if pagination.pageNumber == 0 %}/blog/{% else %}/blog/page/{{ pagination.pageNumber + 1 }}/{% endif %}"
+---
+{% from "_components/index.njk" import blogCard %}
+
+{# Purple Hero Section #}
+{% include "partials/hero.njk" %}
+
+<section class="section">
+  <div class="container max-w-4xl">
+    {# Posts #}
+    {% if posts.length > 0 %}
+      <div class="space-y-6">
+        {% for post in posts %}
+          {{ blogCard({
+            title: post.data.title,
+            description: post.data.description,
+            url: post.url,
+            image: post.data.image,
+            date: post.date,
+            author: post.data.author
+          }) }}
+        {% endfor %}
+      </div>
+
+      {# Pagination #}
+      {% if pagination.pages.length > 1 %}
+        <nav class="mt-12 flex items-center justify-center gap-2" aria-label="Blog pagination">
+          {% if pagination.href.previous %}
+            <a
+              href="{{ pagination.href.previous }}"
+              class="px-4 py-2 flex items-center gap-2 rounded-full text-zinc-600 hover:bg-zinc-100 hover:text-primary-700 transition-colors no-underline hc:text-zinc-800"
+            >
+              {% phosphor "arrow-left", "bold", { size: 18 } %}
+              <span>Newer</span>
+            </a>
+          {% endif %}
+
+          <span class="px-4 py-2 text-sm text-zinc-500 hc:text-zinc-700">
+            Page {{ pagination.pageNumber + 1 }} of {{ pagination.pages.length }}
+          </span>
+
+          {% if pagination.href.next %}
+            <a
+              href="{{ pagination.href.next }}"
+              class="px-4 py-2 flex items-center gap-2 rounded-full text-zinc-600 hover:bg-zinc-100 hover:text-primary-700 transition-colors no-underline hc:text-zinc-800"
+            >
+              <span>Older</span>
+              {% phosphor "arrow-right", "bold", { size: 18 } %}
+            </a>
+          {% endif %}
+        </nav>
+      {% endif %}
+
+    {% else %}
+      <div class="text-center py-12">
+        <p class="text-lg text-zinc-600 hc:text-zinc-700">No posts yet. Check back soon!</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
